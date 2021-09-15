@@ -1,0 +1,26 @@
+﻿@model ITHOOT.ViewModels.DeveloperOnProjectViewModel
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form asp-action="AddDeveloperOnProject" onsubmit="return postQuery(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select asp-for="ProjectId" class="form-control" asp-items="@ViewBag.Projects"></select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeveloperId" class="control-label"></label>
+                <select asp-for="DeveloperId" class="form-control"asp-items="@ViewBag.Developers"></select>
+                <span asp-validation-for="DeveloperId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add developer" class="btn btn-primary" />
+            </div>
+            <div>
+                <a class="btn btn-sm btn-primary text-white" onclick="getRequest('@Url.Action("Detalis", "Project", new {id=Model.ProjectId }, Context.Request.Scheme)')">Return</a>
+            </div>
+        </form>
+    </div>
+</div>
+
