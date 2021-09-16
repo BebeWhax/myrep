@@ -1,0 +1,75 @@
+﻿@page
+@model ITHOOT_Razor.Pages.Client.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function(){
+
+            $('#buttonCreate').click(function(){
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Page("/Client/Create")',
+                    success: function (result) {
+                        $('#result1').html(result);
+                    }
+                });
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function(){
+
+            $('#buttonEdit').click(function(){
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Page("/Client/Edit")',
+                    success: function (result) {
+                        $('#result1').html(result);
+                    }
+                });
+            });
+        });
+
+    </script>
+}
+<fieldset>
+    <form asp-page-handler="Create">
+        <input type="button" class="btn btn-primary" value="Create new" id="buttonCreate" />
+        <br />
+        <span id="result1"></span>
+    </form>
+</fieldset>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientsEntity[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ClientsEntity)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <form asp-page-handler="Delete" asp-route-id="@item.Id">
+                        <input class="btn btn-danger" type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
