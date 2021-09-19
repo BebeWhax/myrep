@@ -85,7 +85,27 @@ jQueryAjaxDelete = form => {
             error: function (err) {
                 console.log(err);
             }
+        });
+        return false;
+    } catch (ex) {
+        console.log(ex);
+    }
+}
 
+jQueryAjaxDeleteDeveloperInProject = form => {
+    try {
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: new FormData(form.stringify({ id: id })),
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                $('#main').html(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
         });
         return false;
     } catch (ex) {

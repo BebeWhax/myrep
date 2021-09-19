@@ -20,24 +20,23 @@
 
         @foreach (DeveloperModel developer in Model.Developers)
         {
-            <div class="d-flex justify-content-between col-6">
-                <p>@Html.DisplayFor(model => developer.Name)</p>
-                <p>@Html.DisplayFor(model => developer.Position.Name)</p>
-                <form method="post" asp-action="RemoveDeveloperOnProject" asp-route-developerId="@developer.Id" asp-route-projectId="@Model.Id" asp-controller="DeveloperOnProject" onsubmit="return jQueryAjaxDelete(this);">
-                    <input class="btn btn-secondary" type="submit" value="Remove" />
-                </form>
-            </div>
-        }
+<div class="d-flex justify-content-between col-6">
+    <p>@Html.DisplayFor(model => developer.Name)</p>
+    <p>@Html.DisplayFor(model => developer.Position.Name)</p>
+    <form method="post" asp-action="RemoveDeveloperOnProject" asp-route-developerId="@developer.Id" asp-route-projectId="@Model.Id" asp-controller="DeveloperOnProject" onsubmit="return jQueryAjaxDelete(this);">
+        <input class="btn btn-secondary" type="submit" value="Вилучити розробника" />
+    </form>
+</div>}
     </div>
 
 
 
     <div class="d-flex">
-        <a class="btn btn-primary text-decoration-none pointer text-white" onclick="getRequest('@Url.Action("Index", "Project", new { id = Model.Id }, Context.Request.Scheme)')">Return</a> |
-        <a class="btn btn-primary text-decoration-none pointer text-white" onclick="getRequest('@Url.Action("Edit", "Project", new { id = Model.Id }, Context.Request.Scheme)')">Edit</a> |
-        <a class="btn btn-primary text-decoration-none pointer text-white" onclick="getRequest('@Url.Action("AddDeveloperOnProject", "DeveloperOnProject", new { projectId = Model.Id }, Context.Request.Scheme)')">Add new developer</a> |
-        <form asp-action="Delete" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxDelete(this);">
-            <input class="btn btn-danger" type="submit" value="Delete" />
+        <a class="btn btn-primary text-decoration-none pointer text-white" onclick="getRequest('@Url.Action("Index", "Project", new { id = Model.Id }, Context.Request.Scheme)')">Назад</a> |
+        <a class="btn btn-primary text-decoration-none pointer text-white" onclick="getRequest('@Url.Action("Edit", "Project", new { id = Model.Id }, Context.Request.Scheme)')">Редагувати</a> |
+        <a class="btn btn-primary text-decoration-none pointer text-white" onclick="getRequest('@Url.Action("AddDeveloperOnProject", "DeveloperOnProject", new { projectId = Model.Id }, Context.Request.Scheme)')">Додати розробника</a> |
+        <form asp-action="Delete" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxDeleteDeveloperInProject(this);">
+            <input class="btn btn-danger" type="submit" value="Видалити" />
         </form>
     </div>
 </div>

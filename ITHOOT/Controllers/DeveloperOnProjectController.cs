@@ -62,8 +62,9 @@ namespace ITHOOT.Controllers
             ViewData["Developers"] = new SelectList(developers, "Id", "Name",model.DeveloperId);
             return PartialView(model);
         }
+        
         [HttpPost]
-        public async Task<IActionResult> RemoveDeveloperOnProject(Guid projectId,Guid developerId, [FromServices] IDeveloperService developerService)
+        public async Task<IActionResult> RemoveDeveloperOnProject(Guid projectId, Guid developerId)
         {
             var entryProject = await projectService.GetAsync(projectId);
             var entryDeveloper = entryProject.Developers.First(p => p.Id == developerId);
@@ -73,6 +74,5 @@ namespace ITHOOT.Controllers
             await projectService.UpdateAsync(entryProject.ToDTO());
             return RedirectToAction("Detalis", "Project", new { id = projectId });
         }
-
     }
 }

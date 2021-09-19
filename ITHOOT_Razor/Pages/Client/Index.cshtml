@@ -23,21 +23,7 @@
         });
 
     </script>
-    <script>
-        $(document).ready(function(){
-
-            $('#buttonEdit').click(function(){
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Page("/Client/Edit")',
-                    success: function (result) {
-                        $('#result1').html(result);
-                    }
-                });
-            });
-        });
-
-    </script>
+    
 }
 <fieldset>
     <form asp-page-handler="Create">

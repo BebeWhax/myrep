@@ -58,7 +58,7 @@ namespace DataLayer.Repositories
             
             foreach (var t in added)
                 entity.Developers.Add(t);
-            foreach (var t in removed)
+            foreach (var t in removed.ToList())
                 entity.Developers.Remove(t);
             
             entity.ClientId = item.ClientId;
